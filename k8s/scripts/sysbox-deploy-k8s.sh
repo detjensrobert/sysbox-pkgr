@@ -475,9 +475,12 @@ function install_sysbox_deps() {
 		elif semver_ge $kversion 5.17 && semver_lt $kversion 5.18; then
 			echo "Kernel version $kversion is 5.17"
 			cp -r "/opt/shiftfs-k5.17" "$host_run/shiftfs-dkms"
-		else
-			echo "Kernel version $kversion is >= 5.18"
+		elif semver_ge $kversion 5.18 && semver_lt $kversion 6.1; then
+			echo "Kernel version $kversion is >= 5.18 and < 6.1"
 			cp -r "/opt/shiftfs-k5.18" "$host_run/shiftfs-dkms"
+		else
+			echo "Kernel version $kversion is >= 6.1"
+			cp -r "/opt/shiftfs-k6.1" "$host_run/shiftfs-dkms"
 		fi
 	fi
 
